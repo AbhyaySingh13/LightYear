@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>LightYear Solutions Website</h2>
+
+<div class="col-md-6">
+    <h4>Meter Manager</h4>
+    <div class="list-group">
+        @Html.ActionLink("Manage Meters ", "Index", "MeterManager", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Manage Suppliers", "Index", "SupplierManager", null, new { @class = "list-group-item" })
+    </div>
+    <br />
+    
+</div>
+<div class="col-md-6">
+    <h4>Order Management</h4>
+    <div class="list-group">
+        @Html.ActionLink("Manage Technicians", "Index", "TechnicianManager", null, new { @class = "list-group-item" })
+    </div>
+</div>
+<div class="col-md-12 clearfix"></div>
