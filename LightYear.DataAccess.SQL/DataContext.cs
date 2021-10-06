@@ -18,5 +18,8 @@ namespace LightYear.DataAccess.SQL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Technician> Technicians { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
     }
 }
+
