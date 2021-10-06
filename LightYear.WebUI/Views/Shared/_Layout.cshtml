@@ -22,15 +22,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated && User.Identity.Name == "abhyayksingh@gmail.com")
-                     {
-                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                     }
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    }
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("View Meters", "DisplayMeters", "MeterManager")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+                @*@{
+                    Html.RenderAction("BasketSummary", "Basket");
+                }*@
             </div>
         </div>
     </div>

@@ -1,16 +1,17 @@
 ﻿using LightYear.Core.Contracts;
+using LightYear.Core.Models;
+using LightYear.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LightYear.Core.Models;
 using System.Web;
-using LightYear.Core.ViewModels;
 
-namespace LightYear.Services
+
+namespace e_Library.Services
 {
-    public class BasketService: IBasketService
+    public class BasketService : IBasketService
     {
         IRepository<Meter> meterContext;
         IRepository<Basket> basketContext;
@@ -118,15 +119,15 @@ namespace LightYear.Services
             if (basket != null)
             {
                 var results = (from b in basket.BasketItems
-                              join p in meterContext.Collection() on b.MeterId equals p.Id
-                              select new BasketItemViewModel()
-                              {
-                                  Id = b.Id,
-                                  Quantity = b.Quantity,
-                                  MeterName = p.Name,
-                                  Image = p.Image,
-                                  Price = p.Price
-                              }
+                               join p in meterContext.Collection() on b.MeterId equals p.Id
+                               select new BasketItemViewModel()
+                               {
+                                   Id = b.Id,
+                                   Quantity = b.Quantity,
+                                   MeterName = p.Name,
+                                   Image = p.Image,
+                                   Price = p.Price
+                               }
                               ).ToList();
 
                 return results;
@@ -186,5 +187,3 @@ namespace LightYear.Services
         }
     }
 }
-                              
-            

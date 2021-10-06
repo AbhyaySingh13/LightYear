@@ -49,7 +49,11 @@ namespace LightYear.WebUI
             container.RegisterType<IRepository<Technician>, SQLRepository<Technician>>();
             container.RegisterType<IRepository<Supplier>, SQLRepository<Supplier>>();
             container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
+            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
 
+
+            container.RegisterType<IBasketService, IBasketService>();
         }
     }
 }

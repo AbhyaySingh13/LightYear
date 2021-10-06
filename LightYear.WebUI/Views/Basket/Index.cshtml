@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LightYear.Core.ViewModels.BasketItemViewModel>
+
+@{
+    ViewBag.Title = "Basket";
+}
+
+<h2>Basket</h2>
+
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeterName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            Line Total
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img class="img" src="~/Content/MeterImages/@item.Image" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @String.Format("0:c", item.Price)
+            </td>
+            <td>
+                @String.Format("0:c", item.Price * item.Quantity)
+            </td>
+            <td>
+                <a href="@Url.Action("RemoveFromBasket", "Basket", new { Id=item.Id })" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="4" style="text-align:right; font-size: 20px;"><strong>Basket Total</strong></td>
+        <td style="font-size: 20px; padding-left: 20px;">@String.Format("{0:c}", (from p in Model select p.Price * p.Quantity).Sum())</td>
+        <td><a style=" " href="@Url.Action("Checkout", "Basket",new { basketTotal = (from p in Model select p.Price * p.Quantity).Sum()})">Checkout</a></td>
+    </tr>
+</table>
