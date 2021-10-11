@@ -1,3 +1,4 @@
+using LightYear.Services;
 using LightYear.Core.Contracts;
 using LightYear.Core.Models;
 using LightYear.DataAccess.SQL;
@@ -53,7 +54,7 @@ namespace LightYear.WebUI
             container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
 
 
-            container.RegisterType<IBasketService, IBasketService>();
+            container.RegisterType<IBasketService, BasketService>();
         }
     }
 }
