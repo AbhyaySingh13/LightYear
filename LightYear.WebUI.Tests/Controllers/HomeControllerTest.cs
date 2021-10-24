@@ -13,7 +13,7 @@ namespace LightYear.WebUI.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void IndexPageDoesReturnProducts()
         {
             // Arrange
             HomeController controller = new HomeController();
