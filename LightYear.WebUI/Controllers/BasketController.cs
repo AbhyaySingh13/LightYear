@@ -6,18 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace LightYear.WebUI.Controllers
 {
     public class BasketController : Controller
     {
+        IRepository<Customer> customers;
         IBasketService basketService;
         IOrderService orderService;
 
-        public BasketController(IBasketService BasketService, IOrderService OrderService)
+        public BasketController(IBasketService BasketService, IOrderService OrderService, IRepository<Customer> Customers)
         {
             this.basketService = BasketService;
             this.orderService = OrderService;
+            this.customers = Customers;
         }
         // GET: Basket
         public ActionResult Index()
@@ -47,16 +50,36 @@ namespace LightYear.WebUI.Controllers
             return PartialView(basketSummary);
         }
 
+        [Authorize]
         public ActionResult Checkout()
         {
-            return View();
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
+            if ( customer !=  null)
+            {
+                Order order = new Order()
+                {
+                    Email = customer.Email,
+                    ResidentialAddress = customer.ResidentialAddress,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    CellNumber = customer.CellNumber
+
+                };
+                return View(order);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
         [HttpPost]
+        [Authorize]
         public ActionResult Checkout(Order order)
         {
 
             var basketItems = basketService.GetBasketItems(this.HttpContext);
             order.OrderStatus = "Order Created";
+            order.Email = User.Identity.Name;
 
             //process Payment
             order.OrderStatus = "Payment Processed";
