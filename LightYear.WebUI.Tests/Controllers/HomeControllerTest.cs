@@ -1,4 +1,7 @@
-﻿using LightYear.WebUI;
+﻿using LightYear.Core.Contracts;
+using LightYear.Core.Models;
+using LightYear.Core.ViewModels;
+using LightYear.WebUI;
 using LightYear.WebUI.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -11,44 +14,27 @@ namespace LightYear.WebUI.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
-    {
-        [TestMethod]
-        public void IndexPageDoesReturnProducts()
+    { 
+        
+        public class UnitTest1
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            [TestMethod]
+            public void IndexPageDoesReturnProducts()
+            {
+                IRepository<Meter> meterContext = new LightYear.Tests.Mocks.MockContext<Meter>();
+                IRepository<Supplier> SupplierContext = new LightYear.Tests.Mocks.MockContext<Supplier>();
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+                meterContext.Insert(new Meter());
 
-            // Assert
-            Assert.IsNotNull(result);
+                MeterManagerController controller = new MeterManagerController(meterContext, SupplierContext);
+
+                var result = controller.Index() as ViewResult;
+                var viewModel = result.ViewData.Model as MeterListViewModel;
+
+                Assert.AreEqual(1, viewModel.Meters.Count());
+
+            }
         }
 
-        [TestMethod]
-        public void About()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
     }
 }

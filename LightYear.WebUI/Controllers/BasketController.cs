@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System.Net.Mail;
+using System.Net;
 
 namespace LightYear.WebUI.Controllers
 {
@@ -15,6 +17,8 @@ namespace LightYear.WebUI.Controllers
         IRepository<Customer> customers;
         IBasketService basketService;
         IOrderService orderService;
+        private IRepository<Meter> meterContext;
+        private IRepository<Supplier> supplierContext;
 
         public BasketController(IBasketService BasketService, IOrderService OrderService, IRepository<Customer> Customers)
         {
@@ -22,6 +26,13 @@ namespace LightYear.WebUI.Controllers
             this.orderService = OrderService;
             this.customers = Customers;
         }
+
+        public BasketController(IRepository<Meter> meterContext, IRepository<Supplier> supplierContext)
+        {
+            this.meterContext = meterContext;
+            this.supplierContext = supplierContext;
+        }
+
         // GET: Basket
         public ActionResult Index()
         {
@@ -88,9 +99,52 @@ namespace LightYear.WebUI.Controllers
 
             return RedirectToAction("ThankYou", new { OrderId = order.Id });
         }
-        public ActionResult ThankYou(string OrderId)
+        public ActionResult ThankYou()
         {
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
+            string fname = customer.FirstName; //name
+
+
+            string receiver = customer.Email;
+            string subject = "E-Library Order Confirmation  ";
+            string message = "Hi " + fname + " We have received your order and are processing it. See you soon!";
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("campuswork2021@outlook.co.za", "LightYear Solutions");
+                    var receiverEmail = new MailAddress(receiver, "Receiver");
+                    var password = "Campuswork";
+                    var sub = subject;
+                    var body = message;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp-mail.outlook.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+
             return View();
         }
+
     }
 }

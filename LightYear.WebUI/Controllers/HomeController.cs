@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LightYear.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class BaksetController : Controller
     {
         public ActionResult Index()
         {

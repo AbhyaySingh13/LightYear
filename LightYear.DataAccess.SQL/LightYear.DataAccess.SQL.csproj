@@ -61,9 +61,13 @@
     <Compile Include="Migrations\202110111610511_AddedOrders.Designer.cs">
       <DependentUpon>202110111610511_AddedOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110242045421_adddCheckout.cs" />
-    <Compile Include="Migrations\202110242045421_adddCheckout.Designer.cs">
-      <DependentUpon>202110242045421_adddCheckout.cs</DependentUpon>
+    <Compile Include="Migrations\202110242045421_AddedCheckout.cs" />
+    <Compile Include="Migrations\202110242045421_AddedCheckout.Designer.cs">
+      <DependentUpon>202110242045421_AddedCheckout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110250542182_Model.cs" />
+    <Compile Include="Migrations\202110250542182_Model.Designer.cs">
+      <DependentUpon>202110250542182_Model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,8 +93,11 @@
     <EmbeddedResource Include="Migrations\202110111610511_AddedOrders.resx">
       <DependentUpon>202110111610511_AddedOrders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110242045421_adddCheckout.resx">
-      <DependentUpon>202110242045421_adddCheckout.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110242045421_AddedCheckout.resx">
+      <DependentUpon>202110242045421_AddedCheckout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110250542182_Model.resx">
+      <DependentUpon>202110250542182_Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

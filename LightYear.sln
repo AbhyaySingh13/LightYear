@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightYear.WebUI", "LightYea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightYear.WebUI.Tests", "LightYear.WebUI.Tests\LightYear.WebUI.Tests.csproj", "{931AB4A2-6526-4503-A6A3-195E81160C21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightYear.DataAccess.InMemory", "LightYear.DataAccess.InMemory\LightYear.DataAccess.InMemory.csproj", "{1394A1D2-659C-4D6F-8AAF-77C799946283}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{931AB4A2-6526-4503-A6A3-195E81160C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{931AB4A2-6526-4503-A6A3-195E81160C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{931AB4A2-6526-4503-A6A3-195E81160C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1394A1D2-659C-4D6F-8AAF-77C799946283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1394A1D2-659C-4D6F-8AAF-77C799946283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1394A1D2-659C-4D6F-8AAF-77C799946283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1394A1D2-659C-4D6F-8AAF-77C799946283}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

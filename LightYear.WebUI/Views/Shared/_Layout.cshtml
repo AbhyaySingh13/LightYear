@@ -21,7 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (Request.IsAuthenticated && User.Identity.Name == "abhyayksingh@gmail.com")
+                    @if (Request.IsAuthenticated && User.Identity.Name == "campuswork2021@outlook.co.za")
                     {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                     }
@@ -31,6 +31,7 @@
                     <li>@Html.ActionLink("View Meters", "DisplayMeters", "MeterManager")</li>
                     <li>@Html.ActionLink("Log A Fault", "DisplayMeters", "MeterManager")</li>
                     <li>@Html.ActionLink("Installations", "DisplayMeters", "MeterManager")</li>
+                    <li>@Html.ActionLink("Purchase Vouchers", "DisplayMeters", "MeterManager")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
                 @{
